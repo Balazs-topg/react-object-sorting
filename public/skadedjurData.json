@@ -1,0 +1,24 @@
+{
+  "duvor": {
+    "filter": {
+      "besvär": { "människor": true, "livsmedel": false, "trä": false },
+      "antalBen": { "ingaBen": false, "tvåBen": true, "fyraBen": false, "sexBen": false, "åttaBen": false },
+      "vadGör": { "flyger": true, "kryper": false, "biter": false, "gnagar": false },
+      "antalVingar": { "ingaVingar": false, "tvåVingar": true, "fyraVingar": false }
+    },
+
+    "bild": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Pigeon_by_Keven_Law.jpg",
+    "namn": "Duvor"
+  },
+  "fladdermöss": {
+    "filter": {
+      "besvär": { "människor": true, "livsmedel": false, "trä": false },
+      "antalBen": { "ingaBen": false, "tvåBen": true, "fyraBen": false, "sexBen": false, "åttaBen": false },
+      "vadGör": { "flyger": true, "kryper": false, "biter": false, "gnagar": false },
+      "antalVingar": { "ingaVingar": false, "tvåVingar": true, "fyraVingar": false }
+    },
+
+    "bild": "https://cdn.sanity.io/images/5fe89r5x/sweden/92d4f2c4acb9106b60d4ef1ce83a19ae16aedff0-700x700.png/fladdermus%20illustration.png?rect=74,168,533,371&w=710&h=494&fit=scale&auto=format",
+    "namn": "Duvor"
+  }
+}
