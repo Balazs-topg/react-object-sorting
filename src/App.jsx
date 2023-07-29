@@ -11,21 +11,55 @@ let filteringOptionsTempObj = {
   antalVingar: { ingaVingar: false, tvåVingar: false, fyraVingar: false },
 };
 
+let variableNamesToReadableNames = {};
+
 function App() {
   const [filteringOptions, setfilteringOptions] = useState(filteringOptionsTempObj);
 
-  function Button({ text }) {
+  function Button({ text, editKey }) {
+    function isChecked() {
+      return filteringOptions[editKey][text];
+    }
     return (
       <div
         onClick={() => {
-          console.log(filteringOptions);
+          let clonedObj = { ...filteringOptions };
+          clonedObj[editKey][text] = !clonedObj[editKey][text];
+          console.log(clonedObj);
+          setfilteringOptions(clonedObj);
         }}
         className="form-control border border-primary rounded-full px-1 active:scale-95 transition-transform"
       >
         <label className="label cursor-pointer flex gap-2">
           <span className="label-text text-base-100 pl-1">{text}</span>
-          <input type="checkbox" className="checkbox checkbox-primary" />
+          <input type="checkbox" onChange={() => {}} checked={isChecked()} className="checkbox checkbox-primary no-animation" />
         </label>
+      </div>
+    );
+  }
+
+  const renderSubOptions = (subOptions, firstKey) => {
+    return (
+      <div className="flex gap-2 flex-wrap mt-4">
+        {Object.keys(subOptions).map((key) => (
+          <div key={key}>
+            <Button text={key} editKey={firstKey}></Button>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  function renderOptions(options) {
+    return (
+      <div className="bg-base-200 rounded-xl p-3 flex flex-col gap-4 mt-4 text-white">
+        {Object.entries(options).map(([key, value]) => (
+          <div key={key} className="bg-base-content p-4 rounded-xl shadow-lg">
+            <strong className="text-base-200 font-semibold">
+              {key}:{renderSubOptions(options[key], key)}
+            </strong>
+          </div>
+        ))}
       </div>
     );
   }
@@ -34,11 +68,7 @@ function App() {
     <div className="p-7">
       <div className="mx-auto max-w-3xl p-4 bg-base-300 rounded-2xl shadow-lg border border-white">
         <h1 className="font-semibold text-primary-content text-xl">IDENTIFIERA SKADEDJUR</h1>
-        {filteringOptions.map((input) => (
-          <div key={"beep"} className="user">
-            {input.besvär.människor}
-          </div>
-        ))}
+        {renderOptions(filteringOptionsTempObj)}
 
         {
           //          <div className="bg-base-200 rounded-xl p-3 flex flex-col gap-4 mt-4">
