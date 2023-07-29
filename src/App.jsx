@@ -11,7 +11,33 @@ let filteringOptionsTempObj = {
   antalVingar: { ingaVingar: false, tvåVingar: false, fyraVingar: false },
 };
 
-let variableNamesToReadableNames = {};
+function translate(variableName) {
+  let filteringOptionsString = {
+    besvär: "VILKET BESVÄR ORSAKAR INSEKTEN/DJURET?",
+    människor: "Angriper människor",
+    livsmedel: "Angriper livsmedel eller textil",
+    trä: "Angriper trä",
+    antalBen: "HUR MÅNGA BEN HAR INSEKTEN/DJURET?",
+
+    tvåBen: "Inga ben",
+    fyraBen: "4 ben",
+    sexBen: "6 ben",
+    åttaBen: "8 ben",
+    vadGör: "VAD GÖR INSEKTEN/DJURET?",
+
+    flyger: "Flyger",
+    kryper: "Kryper",
+    biter: "Biter",
+    gnagar: "Gnager",
+    antalVingar: "HUR MÅNGA VINGAR HAR INSEKTEN/DJURET?",
+
+    ingaVingar: "Inga vingar",
+    tvåVingar: "2 vingar",
+    fyraVingar: "4 vingar",
+  };
+
+  return filteringOptionsString[variableName];
+}
 
 function App() {
   const [filteringOptions, setfilteringOptions] = useState(filteringOptionsTempObj);
@@ -31,7 +57,7 @@ function App() {
         className="form-control border border-primary rounded-full px-1 active:scale-95 transition-transform"
       >
         <label className="label cursor-pointer flex gap-2">
-          <span className="label-text text-base-100 pl-1">{text}</span>
+          <span className="label-text text-base-100 pl-1">{translate(text)}</span>
           <input type="checkbox" onChange={() => {}} checked={isChecked()} className="checkbox checkbox-primary no-animation" />
         </label>
       </div>
@@ -56,7 +82,7 @@ function App() {
         {Object.entries(options).map(([key, value]) => (
           <div key={key} className="bg-base-content p-4 rounded-xl shadow-lg">
             <strong className="text-base-200 font-semibold">
-              {key}:{renderSubOptions(options[key], key)}
+              {translate(key)}:{renderSubOptions(options[key], key)}
             </strong>
           </div>
         ))}
@@ -69,56 +95,6 @@ function App() {
       <div className="mx-auto max-w-3xl p-4 bg-base-300 rounded-2xl shadow-lg border border-white">
         <h1 className="font-semibold text-primary-content text-xl">IDENTIFIERA SKADEDJUR</h1>
         {renderOptions(filteringOptionsTempObj)}
-
-        {
-          //          <div className="bg-base-200 rounded-xl p-3 flex flex-col gap-4 mt-4">
-          //            <div className="bg-base-content p-4 rounded-xl shadow-lg">
-          //              <div>
-          //                <h2 className="text-base-200 font-semibold">VILKET BESVÄR ORSAKAR INSEKTEN/DJURET?</h2>
-          //                <div className="flex gap-2 flex-wrap mt-4">
-          //                  <Button changingKey={"besvär"} text={"Angriper människor"}></Button>
-          //                  <Button changingKey={"besvär"} text={"Angriper livsmedel eller textil"}></Button>
-          //                  <Button changingKey={"besvär"} text={"Angriper trä"}></Button>
-          //                </div>
-          //              </div>
-          //            </div>
-          //            <div className="bg-base-content p-4 rounded-xl shadow-lg">
-          //              <div>
-          //                <h2 className="text-base-200 font-semibold">HUR MÅNGA BEN HAR INSEKTEN/DJURET?</h2>
-          //                <div className="flex gap-2 flex-wrap mt-4">
-          //                  <Button text={"2 ben"}></Button>
-          //                  <Button text={"4 ben"}></Button>
-          //                  <Button text={"6 ben"}></Button>
-          //                  <Button text={"8 ben"}></Button>
-          //                </div>
-          //              </div>
-          //            </div>
-          //            <div className="bg-base-content p-4 rounded-xl shadow-lg">
-          //              <div>
-          //                <h2 className="text-base-200 font-semibold">VAD GÖR INSEKTEN/DJURET?</h2>
-          //                <div className="flex gap-2 flex-wrap mt-4">
-          //                  <Button text={"Flyger"}></Button>
-          //                  <Button text={"Kryper"}></Button>
-          //                  <Button text={"Biter"}></Button>
-          //                  <Button text={"Gnager"}></Button>
-          //                </div>
-          //              </div>
-          //            </div>
-          //            <div className="bg-base-content p-4 rounded-xl shadow-lg">
-          //              <div>
-          //                <h2 className="text-base-200 font-semibold">HUR MÅNGA VINGAR HAR INSEKTEN/DJURET? ?</h2>
-          //                <div className="flex gap-2 flex-wrap mt-4">
-          //                  <Button text={"Inga vingar"}></Button>
-          //                  <Button text={"2 vingar"}></Button>
-          //                  <Button text={"4 vingar"}></Button>
-          //                </div>
-          //              </div>
-          //            </div>
-          //            <div className="flex justify-center items-center">
-          //              <input type="text" placeholder="Sök" className="input input-bordered input-primary w-full bg-base-content text-white" />
-          //            </div>
-          //          </div>
-        }
       </div>
     </div>
   );
