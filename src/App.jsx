@@ -64,15 +64,14 @@ function App() {
       </div>
       <div className="p-4">
         <div className="mx-auto max-w-3xl p-4 bg-base-300 rounded-2xl shadow-lg border border-white">
-          <h1 className="font-semibold grid grid-cols-5 gap-2">
-            <div>
-              {matchingItems.map((key) => (
-                <div className="w-12 h-12 bg-amber-400 rounded-xl border border-white">
-                  <img src={key.bild} alt="" srcset="" />
-                </div>
-              ))}
-            </div>
-          </h1>
+          <div className="font-semibold grid grid-cols-5 gap-2">
+            {matchingItems.map((key) => (
+              <div key={key.id} className="h-24 bg-amber-400 rounded-xl overflow-hidden border border-white relative transition-all hover:[&>img]:scale-105">
+                <h2 className="text-white bg-base-content text-center absolute z-20 bottom-0 bg-opacity-70 w-full p-2">{key.namn}</h2>
+                <img className="transition-all relative z-10" src={key.bild} alt={key.namn} srcset="" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>
